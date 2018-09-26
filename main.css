@@ -1,3 +1,15 @@
 body {
-  background-color: cadetblue;
+  /* background-color: cadetblue; */
+}
+
+.card:nth-child(odd) {
+  background-color: lightblue;
+}
+
+.card:nth-child(even) {
+  background-color: lightyellow;
+}
+
+.card-border {
+  border: 2px dotted red;
 }
