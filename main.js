@@ -52,7 +52,6 @@ const printToDom = (stringToPrint, elementId) => {
 };
 
 const loadPeeps = () => {
-  // const peepCards = document.getElementsByClassName
   let newString = '';
   for (let i = 0; i < myPeeps.length; i++) {
     const element = myPeeps[i];
