@@ -56,7 +56,7 @@ const loadPeeps = () => {
   let newString = '';
   for (let i = 0; i < myPeeps.length; i++) {
     const element = myPeeps[i];
-    newString += `<div class="card m-2" style="max-width: 18rem;" id="${i + 1}">
+    newString += `<div class="card m-2 shadow" style="max-width: 18rem;" id="${i + 1}">
     <div class="card-header bg-transparent">${element.name}</div>
     <div class="card-body">
         <h5 class="card-title">${element.title}</h5>
@@ -68,17 +68,21 @@ const loadPeeps = () => {
   printToDom(newString, 'peepBios');
 };
 
-// Set Card border and focus teh input
+// Set Card border and focus the input
 const cardFocus = () => {
   document.getElementById('input-field').focus();
-  let cardEle = event.srcElement;
+  // Loop the cards and remove the border
+  let toggleCards = document.getElementsByClassName('card');
+  for (let i = 0; i < toggleCards.length; i++) {
+    const element = toggleCards[i];
+    element.classList.remove('card-border');
+  }
   // Traverse parents until you get to 'card' class, apply styling
+  let cardEle = event.srcElement;
   while (cardEle.parentNode) {
     cardEle = cardEle.parentNode;
     if (cardEle.classList.contains('card')) {
-      cardEle.classList.contains('card-border')
-        ? cardEle.classList.remove('card-border')
-        : cardEle.classList.add('card-border');
+      cardEle.classList.toggle('card-border');
       return;
     }
   }
