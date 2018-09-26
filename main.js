@@ -57,7 +57,7 @@ const loadPeeps = () => {
   for (let i = 0; i < myPeeps.length; i++) {
     const element = myPeeps[i];
     newString += `<div class="card m-2 shadow" style="max-width: 18rem;" id="${i + 1}">
-    <div class="card-header bg-transparent">${element.name}</div>
+    <div class="card-header bg-transparent font-weight-bold h4">${element.name}</div>
     <div class="card-body">
         <h5 class="card-title">${element.title}</h5>
         <p class="card-text">${element.bio}</p>
@@ -71,7 +71,7 @@ const loadPeeps = () => {
 // Set Card border and focus the input
 const cardFocus = () => {
   document.getElementById('input-field').focus();
-  // Loop the cards and remove the border
+  // Loop the cards and remove the border. (There can be only one!1!1!!11!)
   let toggleCards = document.getElementsByClassName('card');
   for (let i = 0; i < toggleCards.length; i++) {
     const element = toggleCards[i];
@@ -83,7 +83,7 @@ const cardFocus = () => {
     cardEle = cardEle.parentNode;
     if (cardEle.classList.contains('card')) {
       cardEle.classList.toggle('card-border');
-      return;
+      break;
     }
   }
 };
@@ -96,5 +96,16 @@ const registerEvents = () => {
     element.addEventListener('click', cardFocus);
   }
 };
+
+// Event listener for input box to update the Biography of the current selected card
+document.getElementById('input-field').addEventListener('keyup', (event) => {
+  const activeCard = document.getElementsByClassName('card');
+  for (let i = 0; i < activeCard.length; i++) {
+    const element = activeCard[i];
+    if (element.classList.contains('card-border')) {
+      element.children[1].children[1].innerHTML = event.target.value;
+    }
+  }
+});
 
 (document.onload = loadPeeps()), registerEvents();
