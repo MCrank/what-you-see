@@ -99,11 +99,15 @@ const registerEvents = () => {
 
 // Event listener for input box to update the Biography of the current selected card
 document.getElementById('input-field').addEventListener('keyup', (event) => {
-  const activeCard = document.getElementsByClassName('card');
-  for (let i = 0; i < activeCard.length; i++) {
-    const element = activeCard[i];
-    if (element.classList.contains('card-border')) {
-      element.children[1].children[1].innerHTML = event.target.value;
+  if (event.key === 'Enter') {
+    event.target.value = '';
+  } else {
+    const activeCard = document.getElementsByClassName('card');
+    for (let i = 0; i < activeCard.length; i++) {
+      const element = activeCard[i];
+      if (element.classList.contains('card-border')) {
+        element.children[1].children[1].innerHTML = event.target.value;
+      }
     }
   }
 });
